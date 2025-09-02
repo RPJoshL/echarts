@@ -41961,10 +41961,11 @@ function dataSample(seriesType) {
         var baseAxis = coordSys.getBaseAxis();
         var valueAxis = coordSys.getOtherAxis(baseAxis);
         var extent = baseAxis.getExtent();
-        var dpr = api.getDevicePixelRatio();
+        // const dpr = api.getDevicePixelRatio();
         // Coordinste system has been resized
-        var size = Math.abs(extent[1] - extent[0]) * (dpr || 1);
-        var rate = Math.round(count / size);
+        var size = Math.abs(extent[1] - extent[0]) * 1;
+        var rate = Math.round(count / size * 3);
+        // console.log("Resize: " + size + " | Rate: " + rate + " | Count: " + count + " | " + extent[1] + " - " + extent[0] + " * " + dpr)
         if (isFinite(rate) && rate > 1) {
           if (sampling === 'lttb') {
             seriesModel.setData(data.lttbDownSample(data.mapDimension(valueAxis.dim), 1 / rate));

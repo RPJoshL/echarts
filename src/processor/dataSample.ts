@@ -90,10 +90,12 @@ export default function dataSample(seriesType: string): StageHandler {
                 const baseAxis = coordSys.getBaseAxis();
                 const valueAxis = coordSys.getOtherAxis(baseAxis);
                 const extent = baseAxis.getExtent();
-                const dpr = api.getDevicePixelRatio();
+                // const dpr = api.getDevicePixelRatio();
                 // Coordinste system has been resized
-                const size = Math.abs(extent[1] - extent[0]) * (dpr || 1);
-                const rate = Math.round(count / size);
+                const size = Math.abs(extent[1] - extent[0]) * (1);
+                const rate = Math.round((count / size) * 3);
+
+                // console.log("Resize: " + size + " | Rate: " + rate + " | Count: " + count + " | " + extent[1] + " - " + extent[0] + " * " + dpr)
 
                 if (isFinite(rate) && rate > 1) {
                     if (sampling === 'lttb') {
